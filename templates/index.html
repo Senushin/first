@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title> Поиск синей кружки </title>
+  <head>
+  <body>
+    <h1> Выделение синей кружки </h1>
+    <img src = "{{url_for('video_feed')}}" width="500" height="320" > <br>
+
+    <?php if(file_exists( "in_1.jpg" )) { ?>
+    <h2> Появилась </h2><br>
+    <img src = "{{url_for('in_1')}}" width="500" height="320" > <br>
+    <?php } ?>
+
+    <?php if(file_exists( "out_1.jpg" )) { ?>
+    <h2> Пропала </h2><br>
+    <img src = "{{url_for('out_1')}}" width="500" height="320" > <br>
+    <?php } ?>
+
+    <?php if(file_exists( "in_2.jpg" )) { ?>
+    <h2> Появилась </h2><br>
+    <img src = "{{url_for('in_2')}}" width="500" height="320" > <br>
+    <?php } ?>
+
+    <?php if(file_exists( "out_2.jpg" )) { ?>
+    <h2> Пропала </h2><br>
+    <img src = "{{url_for('out_2')}}" width="500" height="320" > <br>
+    <?php } ?>
+
+    <?php if(file_exists( "in_3.jpg" )) { ?>
+    <h2> Появилась </h2><br>
+    <img src = "{{url_for('in_3')}}" width="500" height="320" > <br>
+    <?php } ?>
+
+  </body>
+</html>
