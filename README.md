@@ -1,5 +1,4 @@
-# first
-First application
+# Blue cup searching
 
 This programm takes video file named 'video.ogv' from 
 'static' folder (relative path) to find a blue cup.
