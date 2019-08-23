@@ -18,11 +18,18 @@ def index():
     return render_template('index.html')
 
 def gen():
-    counter = 0
+    
+    #counter/counter2 - varibles for filtering false case when center of mass go outside/inside of frame 
+    counter = 0 
     counter2 =0
+    
+    # state - varible for control that center of mass in frame 
     state = 0
+    
+    # ti,ki - varible for saving images
     ti = 1
     ki = 1
+    
     while (cap.isOpened()):
 
         rval, frame = cap.read()
@@ -53,13 +60,13 @@ def gen():
             if dArea > 7500:
                 x = int(dM10 / dArea)
                 y = int(dM01 / dArea)
-                #cv2.circle(frame, (x, y), 10, (0,0,255), -1)
+                #cv2.circle(frame, (x, y), 10, (0,0,255), -1) - uncomment if you wanna see centr of mass in video
                 if x<10 or x>1210 or y<100 or y>670 and state==1:
                     counter+=1
                     if counter>=4:
                         cv2.imwrite('out_'+str(ti)+'.jpg', frame)
-                        yield (b'--frame2\r\n'
-                               b'Content-Type: image/jpeg\r\n\r\n' + open('out_'+str(ti)+'.jpg', 'rb').read() + b'\r\n')
+                        #yield (b'--frame2\r\n'
+                               #b'Content-Type: image/jpeg\r\n\r\n' + open('out_'+str(ti)+'.jpg', 'rb').read() + b'\r\n')
                         ti+=1
                         state =0
                         counter = 0
@@ -67,8 +74,8 @@ def gen():
                     counter2+=1
                     if counter2>=3:
                         cv2.imwrite('in_'+str(ki)+'.jpg', frame)
-                        yield (b'--frame2\r\n'
-                               b'Content-Type: image/jpeg\r\n\r\n' + open('in_'+str(ti)+'.jpg', 'rb').read() + b'\r\n')
+                        #yield (b'--frame2\r\n'
+                               #b'Content-Type: image/jpeg\r\n\r\n' + open('in_'+str(ti)+'.jpg', 'rb').read() + b'\r\n')
                         ki+=1
                         state =1
                         counter2=0
@@ -108,4 +115,4 @@ def in_3():
 
 
 if __name__ == '__main__':
-    app.run(host = '7.7.7.7')
+    app.run(port = 7777)
